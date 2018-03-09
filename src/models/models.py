@@ -1,4 +1,4 @@
-import pandas as pb
+import pandas as pd
 from catboost import CatBoostClassifier
 import xgboost as xgb
 import lightgbm as lgb
