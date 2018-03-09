@@ -228,8 +228,8 @@ class DataConcat(Data):
     def load(self, load=True, cat_enc=False):
         
         if load:
-            self.country_df_train = self.del_nonunique(pd.read_csv(self.train_file_name, index_col=['id','iid']))
-            self.country_df_test = self.del_nonunique(pd.read_csv(self.test_file_name, index_col=['id','iid']))
+            self.country_df_train = self.del_nonunique(pd.read_csv(self.train_file_name, index_col=['id']))
+            self.country_df_test = self.del_nonunique(pd.read_csv(self.test_file_name, index_col=['id']))
         else:
             data_ind = DataInd()
             data_ind.set_country(self.country)

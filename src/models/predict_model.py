@@ -1,13 +1,13 @@
 import os
 import sys
 import process
-import models
 import pandas as pd
 
 src_dir = os.path.join(os.getcwd(), 'src')
 sys.path.append(src_dir)
 
 from data.data import Data, DataConcat
+from models import LGBM_model, CB_model, XGB_model
 
 def predict():
     filenames_dict = {
