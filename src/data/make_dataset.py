@@ -2,16 +2,53 @@
 import os
 import click
 import logging
+import data
 from dotenv import find_dotenv, load_dotenv
 
+\
 
 @click.command()
-@click.argument('input_filepath', type=click.Path(exists=True))
-@click.argument('output_filepath', type=click.Path())
-def main(input_filepath, output_filepath):
+@click.argument('input_hh_train_filepath', type=click.Path())
+@click.argument('input_ind_train_filepath', type=click.Path())
+@click.argument('input_hh_test_filepath', type=click.Path())
+@click.argument('input_ind_test_filepath', type=click.Path())
+@click.argument('output_train_filepath', type=click.Path())
+@click.argument('output_test_filepath', type=click.Path())
+def main(input_hh_train_filepath,
+         input_ind_train_filepath,
+         input_hh_test_filepath,
+         input_ind_test_filepath,
+         output_train_filepath,
+         output_test_filepath,
+         ):
     """ Runs data processing scripts to turn raw data from (../raw) into
         cleaned data ready to be analyzed (saved in ../processed).
     """
+    data_concat = data.DataConcat()
+    files_dict = {'train_hh': 'data/raw/{0}'.format(input_hh_train_filepath),
+                  'test_hh': 'data/raw/{0}'.format(input_hh_test_filepath),
+                  'train_ind': 'data/raw/{0}'.format(input_ind_train_filepath),
+                  'test_ind': 'data/raw/{0}'.format(input_ind_test_filepath)
+                 }
+    data_concat.set_file_names(files_dict=files_dict)
+    data_concat.set_country(input_hh_train_filepath[0])
+    data_concat.load(load=False, cat_enc=True)
+    files_dict = {'train': 'data/processed/{0}'.format(output_train_filepath),
+                  'test': 'data/processed/{0}'.format(output_test_filepath)}
+    data_concat.save(files_dict=files_dict)
+    
+    files_dict = {'train': 'data/raw/{0}'.format(input_hh_train_filepath),
+                  'test': 'data/raw/{0}'.format(input_hh_test_filepath),
+                 }
+    data_simple = data.Data()
+    data_simple.set_file_names(files_dict=files_dict)
+    data_simple.set_country(input_hh_train_filepath[0])
+    data_simple.load(load=False)
+    files_dict = {'train': 'data/processed/{0}'.format(input_hh_train_filepath),
+                  'test': 'data/processed/{0}'.format(input_hh_test_filepath),
+                 }
+    data_simple.save(files_dict=files_dict)
+
     logger = logging.getLogger(__name__)
     logger.info('making final data set from raw data')
 

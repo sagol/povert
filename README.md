@@ -1,6 +1,8 @@
 povert
 ==============================
 
+sudo apt install g++=4:5.3.1-1ubuntu1
+
 2nd place 2018
 
 Project Organization
