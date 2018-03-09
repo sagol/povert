@@ -1,5 +1,7 @@
 import pandas as pd
 import numpy as np
+from sklearn.utils import resample
+
 from collections import OrderedDict
 from sklearn.model_selection import StratifiedShuffleSplit
 from sklearn.preprocessing import StandardScaler
@@ -76,6 +78,7 @@ class Data():
         print('Country: ', self.country)
         
     def load(self, load=True):
+        print('Data load')
         self.country_df_train = self.del_nonunique(pd.read_csv(self.train_file_name, index_col='id'))
         self.country_df_test = self.del_nonunique(pd.read_csv(self.test_file_name, index_col='id'))
         
@@ -173,7 +176,7 @@ class DataInd(Data):
     
     
     def load(self, load=True, cat_enc=False):
-
+        print('DataInd load')
         self.country_df_train = self.del_nonunique(pd.read_csv(self.train_file_name, index_col=['id','iid']))
         self.country_df_test = self.del_nonunique(pd.read_csv(self.test_file_name, index_col=['id','iid']))
 
@@ -228,8 +231,10 @@ class DataConcat(Data):
     def load(self, load=True, cat_enc=False):
         
         if load:
+            print('DataConcat load')
             self.country_df_train = self.del_nonunique(pd.read_csv(self.train_file_name, index_col=['id']))
             self.country_df_test = self.del_nonunique(pd.read_csv(self.test_file_name, index_col=['id']))
+
         else:
             data_ind = DataInd()
             data_ind.set_country(self.country)
