@@ -11,12 +11,12 @@ from data.data import Data, DataConcat
 
 def predict():
     filenames_dict = {
-        'A':{'train' : 'data\processed\A_hhold_train.csv',
-            'test' : 'data\processed\A_hhold_test.csv'},
-        'B':{'train' : 'data\processed\B_combine_train.csv',
-            'test' : 'data\processed\B_combine_test.csv'},
-        'C':{'train' : 'data\processed\C_combine_train.csv',
-            'test' : 'data\processed\C_combine_test.csv'},
+        'A':{'train' : 'data/processed/A_hhold_train.csv',
+            'test' : 'data/processed/A_hhold_test.csv'},
+        'B':{'train' : 'data/processed/B_combine_train.csv',
+            'test' : 'data/processed/B_combine_test.csv'},
+        'C':{'train' : 'data/processed/C_combine_train.csv',
+            'test' : 'data/processed/C_combine_test.csv'},
         }
 
     data_A = Data()
@@ -217,7 +217,4 @@ def predict():
 
 
 if __name__ == '__main__':
-    log_fmt = '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
-    logging.basicConfig(level=logging.INFO, format=log_fmt)
-
     predict()

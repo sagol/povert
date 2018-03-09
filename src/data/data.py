@@ -223,6 +223,7 @@ class DataConcat(Data):
          self.hh_test_file_name = files_dict.get('test_hh')
          self.ind_train_file_name = files_dict.get('train_ind')
          self.ind_test_file_name = files_dict.get('test_ind')
+         super().set_file_names(files_dict)
 
     def load(self, load=True, cat_enc=False):
         
