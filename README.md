@@ -2,13 +2,13 @@ pover-T 2nd place
 ==============================
 
 Necessary tools and requirements:
-1. You should install g++
+1. You should install g++: 
 	```sudo apt install g++=4:5.3.1-1ubuntu1```
-2. Install the required Python packages in requirements.txt
+2. Install the required Python packages in requirements.txt: 
 	```make requirements```
-3. Generate data
+3. Generate data: 
 	```make data```
-4. Create submission file
+4. Create submission file: 
 	```make submission```
 
 
