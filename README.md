@@ -1,9 +1,16 @@
-povert
+pover-T 2nd place
 ==============================
 
-sudo apt install g++=4:5.3.1-1ubuntu1
+Necessary tools and requirements:
+1. You should install g++
+	```sudo apt install g++=4:5.3.1-1ubuntu1```
+2. Install the required Python packages in requirements.txt
+	```make requirements```
+3. Generate data
+	```make data```
+4. Create submission file
+	```make submission```
 
-2nd place 2018
 
 Project Organization
 ------------

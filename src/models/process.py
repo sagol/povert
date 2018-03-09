@@ -2,6 +2,7 @@ import os
 import sys
 import datetime
 import pandas as pd
+import numpay as np
 from sklearn.metrics.classification import accuracy_score, log_loss
 from sklearn.model_selection import cross_val_score
 from sklearn.model_selection import StratifiedKFold
@@ -43,14 +44,12 @@ class processing:
         print(df.head())
 
  
-    def find_exclude(self, splits=5):
-        if not self.model_dict or not self.data_dict or not self.filenames_dict:
+    def find_exclude(self, n_splits=5):
+        if not self.model_dict or not self.data_dict:
             print('Stoped: no models or data')
             return None
         
         for c in self.countries:
-            #self.data_dict[c].set_country(c)
-            #self.data_dict[c].load(load=True)    
             self.model_dict[c].load_data(data=self.data_dict[c], balance=self.balances[c])
             exclude_list = []
             finish = False
@@ -67,9 +66,9 @@ class processing:
                 exclude_list = exclude_list_prev + exclude_list
 
                 logloss_iter = []
-                splits = self.model_dict[c].data.get_train_valid(n_splits=splits, balance=self.balances[c])
+                splits = self.model_dict[c].data.get_train_valid(n_splits=n_splits, balance=self.balances[c])
 
-                for i in range(0, splits):
+                for i in range(0, n_splits):
                     self.model_dict[c].set_random_seed(i)
                     train, valid = splits[i]
                     self.model_dict[c].set_exclude_list(exclude_list)
@@ -91,8 +90,6 @@ class processing:
         
         predictions = []
         for c in self.countries:
-            #self.data_dict[c].set_country(c)
-            #self.data_dict[c].load(load=True) 
             self.model_dict[c].load_data(data=self.data_dict[c], balance=self.balances[c])
             self.model_dict[c].set_exclude_list(self.exclude_dict[c])
             if self.vote_waights_dict:
