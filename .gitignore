@@ -79,3 +79,4 @@ target/
 /data/raw/*.csv
 /data/processed/*.csv
 .vs/
+*.tsv
