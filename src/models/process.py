@@ -37,9 +37,9 @@ class processing:
 
     def save_csv(self, df, clf_model_name='_', path=''):
         submission_file = os.path.join(
-            path, 'submission_', clf_model_name, '_',
-            str(datetime.datetime.now().strftime("%Y-%m-%d-%H-%M")), '.csv'
-        )
+            path, 'submission_{0}_{1}.csv'.format(
+                   clf_model_name,
+                   str(datetime.datetime.now().strftime("%Y-%m-%d-%H-%M"))))
         print('submission file:', submission_file)
         df.to_csv(submission_file, index=True, float_format='%.4f')
         print(df.head())

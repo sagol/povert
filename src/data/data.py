@@ -1,3 +1,4 @@
+import ray.dataframe as pd
 import pandas as pd
 from sklearn.utils import resample
 from collections import OrderedDict
@@ -9,8 +10,8 @@ class Data():
     """ Class for working with households data."""
 
     def __init__(self):
-        self.country_df_train = pd.DataFrame()
-        self.country_df_test = pd.DataFrame()
+        self.country_df_train = None
+        self.country_df_test = None
         self.categorical_list = []
         self.float_list = []
         self.train_file_name = None
@@ -448,10 +449,10 @@ class DataConcat(Data):
     """
 
     def __init__(self):
-        self.data_hh_train = pd.DataFrame()
-        self.data_hh_test = pd.DataFrame()
-        self.data_indiv_train = pd.DataFrame()
-        self.data_indiv_test = pd.DataFrame()
+        self.data_hh_train = None
+        self.data_hh_test = None
+        self.data_indiv_train = None
+        self.data_indiv_test = None
         super().__init__()
 
     def set_file_names(self, files_dict):

@@ -22,14 +22,12 @@ class predict_model(ABC):
         self.categ_conv = categ_conv
         self.data_df = {}
 
-    @abstractmethod
     def set_params(self, params=None):
         if not params:
             self.params = {}
         else:
             self.params = params
 
-    @abstractmethod
     def set_random_seed(self, random=1):
         self.random = random
 
@@ -48,19 +46,15 @@ class predict_model(ABC):
             self.data_df['test'][header] = self.data_df['test'][header].astype('category').cat.codes
         return True
 
-    @abstractmethod
     def get_train(self):
         return self.data_df['train']
 
-    @abstractmethod
     def get_y(self):
         return self.data_df['y']
 
-    @abstractmethod
     def get_test(self):
         return self.data_df['test']
 
-    @abstractmethod
     def set_exclude_list(self, exclude_list):
         self.exclude_list = exclude_list.copy()
 
