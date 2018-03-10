@@ -2,7 +2,7 @@ import os
 import sys
 import datetime
 import pandas as pd
-import numpay as np
+import numpy as np
 from sklearn.metrics.classification import log_loss
 
 src_dir = os.path.join(os.getcwd(), 'src')
