@@ -5,7 +5,6 @@ import logging
 import data
 from dotenv import find_dotenv, load_dotenv
 
-\
 
 @click.command()
 @click.argument('input_hh_train_filepath', type=click.Path())
@@ -28,25 +27,22 @@ def main(input_hh_train_filepath,
     files_dict = {'train_hh': 'data/raw/{0}'.format(input_hh_train_filepath),
                   'test_hh': 'data/raw/{0}'.format(input_hh_test_filepath),
                   'train_ind': 'data/raw/{0}'.format(input_ind_train_filepath),
-                  'test_ind': 'data/raw/{0}'.format(input_ind_test_filepath)
-                 }
+                  'test_ind': 'data/raw/{0}'.format(input_ind_test_filepath)}
     data_concat.set_file_names(files_dict=files_dict)
     data_concat.set_country(input_hh_train_filepath[0])
     data_concat.load(load=False, cat_enc=True)
     files_dict = {'train': 'data/processed/{0}'.format(output_train_filepath),
                   'test': 'data/processed/{0}'.format(output_test_filepath)}
     data_concat.save(files_dict=files_dict)
-    
+
     files_dict = {'train': 'data/raw/{0}'.format(input_hh_train_filepath),
-                  'test': 'data/raw/{0}'.format(input_hh_test_filepath),
-                 }
+                  'test': 'data/raw/{0}'.format(input_hh_test_filepath)}
     data_simple = data.Data()
     data_simple.set_file_names(files_dict=files_dict)
     data_simple.set_country(input_hh_train_filepath[0])
     data_simple.load(load=False)
     files_dict = {'train': 'data/processed/{0}'.format(input_hh_train_filepath),
-                  'test': 'data/processed/{0}'.format(input_hh_test_filepath),
-                 }
+                  'test': 'data/processed/{0}'.format(input_hh_test_filepath)}
     data_simple.save(files_dict=files_dict)
 
     logger = logging.getLogger(__name__)
