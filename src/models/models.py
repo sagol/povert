@@ -66,7 +66,6 @@ class predict_model(ABC):
     def train(self, x_train=None, y_train=None):
         pass
 
-    @abstractmethod
     def predict(self, test=None):
         if self.classifier:
             if not isinstance(test, pd.DataFrame):
