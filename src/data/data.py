@@ -311,13 +311,13 @@ class DataInd(Data):
 
     def _get_id_list(self, df):
         """
-        Get an ordered list of indeñes.
+        Get an ordered list of indeces.
 
         Args:
             df: DataFrame, dataframe with an individual level data
 
         Returns:
-            An ordered list of indeñes.
+            An ordered list of indeces.
         """
         return list(OrderedDict.fromkeys(df.index.get_level_values(0)))
 
