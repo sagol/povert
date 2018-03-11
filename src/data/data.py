@@ -132,9 +132,9 @@ class Data():
                 categorical_list.append(i)
             else:
                 self.country_df_train[i] = scaler.fit_transform(
-                    self.country_df_train[i].reshape(-1, 1))
+                    self.country_df_train[i].values.reshape(-1, 1))
                 self.country_df_test[i] = scaler.transform(
-                    self.country_df_test[i].reshape(-1, 1))
+                    self.country_df_test[i].values.reshape(-1, 1))
                 float_list.append(i)
         print('float list length: ', len(sorted(float_list)))
         return sorted(categorical_list), sorted(float_list)
@@ -415,20 +415,20 @@ class DataInd(Data):
                     self.country_df_train[header] = self.country_df_train[header].astype('category').cat.codes
                     self.country_df_test[header] = self.country_df_test[header].astype('category').cat.codes
 
-            self.country_df_train = pd.concat(
+            self.country_df_train = self.del_nonunique(pd.concat(
                 [self.get_poor(self.country_df_train),
                  self.count_iid(self.country_df_train),
                  self.count_neg_poz(self.country_df_train),
                  self.summarize(self.country_df_train),
                  self.count_unique_categories(self.country_df_train)],
-                axis=1)
+                axis=1))
 
-            self.country_df_test = pd.concat(
+            self.country_df_test = self.del_nonunique(pd.concat(
                 [self.count_iid(self.country_df_test),
                  self.count_neg_poz(self.country_df_test),
                  self.summarize(self.country_df_test),
                  self.count_unique_categories(self.country_df_test)],
-                axis=1)
+                axis=1))
 
         self.col_common_list = sorted(
             list(set(self.country_df_train.columns).intersection(

@@ -30,7 +30,7 @@ def main(input_hh_train_filepath,
                   'test_ind': 'data/raw/{0}'.format(input_ind_test_filepath)}
     data_concat.set_file_names(files_dict=files_dict)
     data_concat.set_country(input_hh_train_filepath[0])
-    data_concat.load(load=False, cat_enc=True)
+    data_concat.load(load=False, cat_enc=False)
     files_dict = {'train': 'data/processed/{0}'.format(output_train_filepath),
                   'test': 'data/processed/{0}'.format(output_test_filepath)}
     data_concat.save(files_dict=files_dict)

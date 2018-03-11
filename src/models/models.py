@@ -42,8 +42,8 @@ class predict_model(ABC):
 
         self.category_cols = self.data.get_cat_list()
         for header in self.category_cols:
-            self.data_df['train'][header] = self.data_df['train'][header].astype('category').cat.codes
-            self.data_df['test'][header] = self.data_df['test'][header].astype('category').cat.codes
+            self.data_df['train'].loc[:, header] = self.data_df['train'][header].astype('category').cat.codes
+            self.data_df['test'].loc[:, header] = self.data_df['test'][header].astype('category').cat.codes
         return True
 
     def get_train(self):
@@ -73,7 +73,7 @@ class predict_model(ABC):
             elif self.categ_conv:
                 cols = [x for x in self.category_cols if x in test.columns]
                 for header in cols:
-                    test[header] = test[header].astype('category').cat.codes
+                    test.loc[:, header] = test[header].astype('category').cat.codes
             test = test.drop(
                 [x for x in self.exclude_list if x in test.columns], axis=1
             )
@@ -116,7 +116,7 @@ class CB_model(predict_model):
         elif self.categ_conv:
             cols = [x for x in self.category_cols if x in x_train.columns]
             for header in cols:
-                x_train[header] = x_train[header].astype('category').cat.codes
+                x_train.loc[:, header] = x_train[header].astype('category').cat.codes
 
         if not isinstance(y_train, pd.Series):
             y_train = self.get_y()
@@ -164,7 +164,7 @@ class XGB_model(predict_model):
         elif self.categ_conv:
             cols = [x for x in self.category_cols if x in x_train.columns]
             for header in cols:
-                x_train[header] = x_train[header].astype('category').cat.codes
+                x_train.loc[:, header] = x_train[header].astype('category').cat.codes
 
         if not isinstance(y_train, pd.Series):
             y_train = self.get_y()
@@ -204,7 +204,7 @@ class LGBM_model(predict_model):
         elif self.categ_conv:
             cols = [x for x in self.category_cols if x in x_train.columns]
             for header in cols:
-                x_train[header] = x_train[header].astype('category').cat.codes
+                x_train.loc[:, header] = x_train[header].astype('category').cat.codes
 
         if not isinstance(y_train, pd.Series):
             y_train = self.get_y()
