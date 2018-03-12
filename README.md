@@ -1,4 +1,4 @@
-pover-T 2nd place
+pover-T <a target="_blank" href="https://www.drivendata.org/competitions/50/worldbank-poverty-prediction/">2nd place</a>
 ==============================
 
 Necessary tools and requirements:

@@ -506,7 +506,7 @@ class DataConcat(Data):
         self.col_common_list = sorted(
             list(set(self.country_df_test.columns).intersection(
                 self.country_df_train.columns)))
-        self.categorical_list, self_float_list = self.category_float_search(
+        self.categorical_list, self.float_list = self.category_float_search(
                                                     countries=['B'])
 
         print('train:', self.country_df_train.shape)
