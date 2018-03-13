@@ -10,6 +10,7 @@ Necessary tools and requirements:
 	```make data```
 4. Create submission file: 
 	```make submission```
+5. The submission file ```submission_combine_20XX-XX-XX-XX-XX.csv```will appear in ```/models```
 
 
 Project Organization
