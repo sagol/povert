@@ -2,15 +2,16 @@ pover-T <a target="_blank" href="https://www.drivendata.org/competitions/50/worl
 ==============================
 
 Necessary tools and requirements:
-1. You should install g++: 
+1. Python3 
+2. You should install g++: 
 	```sudo apt install g++=4:5.3.1-1ubuntu1```
-2. Install the required Python packages in requirements.txt: 
+3. Install the required Python packages in requirements.txt: 
 	```make requirements```
-3. Generate data: 
+4. Generate data: 
 	```make data```
-4. Create submission file: 
+5. Create submission file: 
 	```make submission```
-5. The submission file ```submission_combine_20XX-XX-XX-XX-XX.csv```will appear in ```/models```
+6. The submission file ```submission_combine_20XX-XX-XX-XX-XX.csv```will appear in ```/models```
 
 
 Project Organization
