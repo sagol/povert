@@ -33,21 +33,27 @@ data:  #requirements
 	'A_hhold_test.csv' \
 	'A_indiv_test.csv' \
 	'A_combine_train.csv' \
-	'A_combine_test.csv'
+	'A_combine_test.csv' \
+	'A_indiv_ext_train.csv' \
+	'A_indiv_ext_test.csv'
 	$(PYTHON_INTERPRETER) src/data/make_dataset.py \
 	'B_hhold_train.csv' \
 	'B_indiv_train.csv' \
 	'B_hhold_test.csv' \
 	'B_indiv_test.csv' \
 	'B_combine_train.csv' \
-	'B_combine_test.csv'
+	'B_combine_test.csv' \
+	'B_indiv_ext_train.csv' \
+	'B_indiv_ext_test.csv'
 	$(PYTHON_INTERPRETER) src/data/make_dataset.py \
 	'C_hhold_train.csv' \
 	'C_indiv_train.csv' \
 	'C_hhold_test.csv' \
 	'C_indiv_test.csv' \
 	'C_combine_train.csv' \
-	'C_combine_test.csv'
+	'C_combine_test.csv' \
+	'C_indiv_ext_train.csv' \
+	'C_indiv_ext_test.csv'
 
 ## Create submission
 submission:

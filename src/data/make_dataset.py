@@ -13,21 +13,36 @@ from dotenv import find_dotenv, load_dotenv
 @click.argument('input_ind_test_filepath', type=click.Path())
 @click.argument('output_train_filepath', type=click.Path())
 @click.argument('output_test_filepath', type=click.Path())
+@click.argument('output_train_ind_filepath', type=click.Path())
+@click.argument('output_test_ind_filepath', type=click.Path())
 def main(input_hh_train_filepath,
          input_ind_train_filepath,
          input_hh_test_filepath,
          input_ind_test_filepath,
          output_train_filepath,
          output_test_filepath,
+         output_train_ind_filepath,
+         output_test_ind_filepath         
          ):
     """ Runs data processing scripts to turn raw data from (../raw) into
         cleaned data ready to be analyzed (saved in ../processed).
     """
-    data_concat = data.DataConcat()
+
+    data_individual = data.DataInd()
+    files_dict = {'train': 'data/raw/{0}'.format(input_ind_train_filepath),
+                  'test': 'data/raw/{0}'.format(input_ind_test_filepath)}
+    data_individual.set_country(input_hh_train_filepath[0])
+    data_individual.set_file_names(files_dict=files_dict)
+    data_individual.load(load=False, cat_enc=False)
+    files_dict = {'train': 'data/processed/{0}'.format(output_train_ind_filepath),
+                  'test': 'data/processed/{0}'.format(output_test_ind_filepath)}
+    data_individual.save(files_dict=files_dict, poor=False)
+
     files_dict = {'train_hh': 'data/raw/{0}'.format(input_hh_train_filepath),
                   'test_hh': 'data/raw/{0}'.format(input_hh_test_filepath),
-                  'train_ind': 'data/raw/{0}'.format(input_ind_train_filepath),
-                  'test_ind': 'data/raw/{0}'.format(input_ind_test_filepath)}
+                  'train_ind': 'data/processed/{0}'.format(output_train_ind_filepath),
+                  'test_ind': 'data/processed/{0}'.format(output_test_ind_filepath)}
+    data_concat = data.DataConcat()
     data_concat.set_file_names(files_dict=files_dict)
     data_concat.set_country(input_hh_train_filepath[0])
     data_concat.load(load=False, cat_enc=False)
