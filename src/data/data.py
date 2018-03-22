@@ -125,7 +125,7 @@ class Data():
                     self.country_df_train[i].unique()))
             if len(value_set) <= count:
                 categorical_list.append(i)
-            else:          
+            else:
                 float_list.append(i)
         print('float list length: ', len(sorted(float_list)))
         return sorted(categorical_list), sorted(float_list)
@@ -156,7 +156,7 @@ class Data():
         self.country_df_test = self.country_df_test.fillna(
             self.country_df_test.median()).dropna(axis=1, how='all')
         print('train data have NaNs: ', self.country_df_train.isnull().any().any())
-        print('test data have NaNs: ', self.country_df_test.isnull().any().any())    
+        print('test data have NaNs: ', self.country_df_test.isnull().any().any())
 
     def set_file_names(self, files_dict):
         """
@@ -186,7 +186,7 @@ class Data():
             load: bool, load from file without postprocessing,
                   optional (default=True)
             with_bug: bool, emulate a bug for final submission,
-                  optional, (default=True)                  
+                  optional, (default=True)
         """
         self.country_df_train = self.del_nonunique(
             pd.read_csv(self.train_file_name, index_col='id'))
@@ -434,7 +434,7 @@ class DataInd(Data):
             self.country_df_train = self.del_nonunique(
                 pd.read_csv(self.train_file_name, index_col=['id', 'iid']))
             self.country_df_test = self.del_nonunique(
-                pd.read_csv(self.test_file_name, index_col=['id', 'iid']))            
+                pd.read_csv(self.test_file_name, index_col=['id', 'iid']))
             self._rename_col()
             self.fillna()
             self.col_common_list = sorted(
@@ -477,7 +477,7 @@ class DataInd(Data):
         print('indiv test shape: ', self.country_df_test.shape)
         return True
 
-import numpy as np
+
 class DataConcat(Data):
     """
     Class for working with concatenated data from individual and household
@@ -523,7 +523,7 @@ class DataConcat(Data):
                                     'test': self.hh_test_file_name})
             if not data_hh.load(load=False, with_bug=with_bug):
                 return False
-        
+
         if load:
             print('DataConcat load')
             self.country_df_train = self.del_nonunique(pd.read_csv(
@@ -531,11 +531,6 @@ class DataConcat(Data):
             self.country_df_test = self.del_nonunique(pd.read_csv(
                 self.test_file_name, index_col=['id']))
         else:
-            country_df_train = self.del_nonunique(pd.read_csv(
-                self.train_file_name, index_col=['id']))          
-            country_df_test = self.del_nonunique(pd.read_csv(
-                self.test_file_name, index_col=['id']))
-            
             data_ind = DataInd()
             data_ind.set_country(self.country)
             data_ind.set_file_names({'train': self.ind_train_file_name,
@@ -549,10 +544,10 @@ class DataConcat(Data):
 
         self.col_common_list = sorted(
             list(set(self.country_df_train.columns).intersection(
-                self.country_df_test.columns)))  
-            
+                self.country_df_test.columns)))
+
         if with_bug:
-            self.categorical_list = data_hh.categorical_list   
+            self.categorical_list = data_hh.categorical_list
         else:
             self.categorical_list, self.float_list = self.category_float_search(
                                                          countries=['B'])

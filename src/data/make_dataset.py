@@ -22,7 +22,7 @@ def main(input_hh_train_filepath,
          output_train_filepath,
          output_test_filepath,
          output_train_ind_filepath,
-         output_test_ind_filepath         
+         output_test_ind_filepath
          ):
     """ Runs data processing scripts to turn raw data from (../raw) into
         cleaned data ready to be analyzed (saved in ../processed).
